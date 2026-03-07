@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h2>Teacher Subjects</h2>
+
+<a href="{% url 'add_teacher_subject' %}">Assign Subject</a>
+
+<table border="1">
+<tr>
+    <th>Teacher</th>
+    <th>Subject</th>
+    <th>Class</th>
+</tr>
+
+{% for t in data %}
+<tr>
+    <td>{{ t.teacher.username }}</td>
+    <td>{{ t.subject.name }}</td>
+    <td>{{ t.classroom.name }} - {{ t.classroom.stream }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{%endblock%}

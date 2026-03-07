@@ -1,0 +1,95 @@
+/* Container */
+.container {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 25px 30px;
+    background-color: #f9faf9;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    color: #2b7a0b; /* Green school theme */
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Form Card */
+.form-card label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Inputs, Selects, Textarea */
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    border-color: #2b7a0b;
+    box-shadow: 0 0 8px rgba(43, 122, 11, 0.3);
+    outline: none;
+}
+
+/* Button Styling */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background-color: #2b7a0b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1f5507;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(43, 122, 11, 0.3);
+}
+
+/* Textarea Resize */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+    .page-title {
+        font-size: 24px;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

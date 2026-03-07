@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{%block content%}
+<h2>Assign Teacher Subject</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<label>Teacher</label>
+<select name="teacher">
+    {% for t in teachers %}
+        <option value="{{ t.id }}">
+            {{ t.username }}
+        </option>
+    {% endfor %}
+</select>
+
+
+<label>Subject</label>
+<select name="subject">
+    {% for s in subjects %}
+        <option value="{{ s.id }}">
+            {{ s.name }}
+        </option>
+    {% endfor %}
+</select>
+
+
+<label>Class</label>
+<select name="classroom">
+    {% for c in classes %}
+        <option value="{{ c.id }}">
+            {{ c.name }} - {{ c.stream }}
+        </option>
+    {% endfor %}
+</select>
+
+<button>Save</button>
+
+</form>
+
+{%endblock%}

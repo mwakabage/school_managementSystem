@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h2>Subjects</h2>
+
+<a href="{% url 'add_subject' %}">Add Subject</a>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Code</th>
+    </tr>
+
+    {% for s in subjects %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.code }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{%endblock%}

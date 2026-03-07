@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+
+{% block  %}
+<h2>Add Academic Year</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Year:</label>
+    <input type="text" name="year">
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock  %}

@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h2>Add Subject</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name:</label>
+    <input name="name">
+
+    <label>Code:</label>
+    <input name="code">
+
+    <button>Save</button>
+</form>
+
+{%endblock%}

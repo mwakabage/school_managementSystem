@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <h6>Results</h6>
+         <table class="table">
+                <thead>
+                    <tr>
+                    <th>Number</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <tr>
+                </thead>
+                <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ result.subject.name }}</td>
+                    <td>{{ result.subject.code }}</td>
+                    <td> {{ result.marks }}</td>
+                    <td>{{ result.grade }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>No results yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            
+        
+{%  endblock %}

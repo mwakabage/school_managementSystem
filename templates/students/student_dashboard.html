@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ block.super}}
+
+
+
+<div class="row">
+
+    <!-- Subjects List -->
+    <div class="content">
+        <div class="">
+            <h6 class="section-title">Subjects</h6>
+            <table class="table" border="1" cellpadding="10" cellspacing="0" color="blue">
+                <thead>
+                    <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <tr>
+                </thead>
+                {% for subject in subjects %}    
+                 <tbody>
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{subject.name}}</td>
+                        <td>{{subject.code}}</td>
+                    </tr>
+                 </tbody>
+                {% empty %}
+                    <li>No subjects assigned yet.</li>
+                {% endfor %}
+                </table>
+       
+            <h6>Assignments</h6>
+            <table class="table" border="1" cellpadding="10" cellspacing="0" color="blue">
+                <thead>
+                    <tr>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Questions</th>
+                    <th>Date</th>
+
+                    <tr>
+                </thead>
+          {% if assignments %}
+                <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                <td>{{ assignment.title }}</td>
+                <td>{{ assignment.subject.name }}</td>
+                <td>{{ assignment.subject.code }}</td>
+                <td>{{assignment.description|default:"no assigment"}}</td>
+                <td>{{ assignment.due_date }}</td>
+                </tr>
+            </tbody>
+                {% endfor %}
+         </table>
+            {% else %}
+            <tr>
+                  <p>No assignments available.</p>
+            </tr>
+            {% endif %}
+        
+   
+            <h6>Results</h6>
+         <table class="table" border="1" cellpadding="10" cellspacing="0" color="blue">
+                <thead>
+                    <tr>
+                    <th>Number</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <tr>
+                </thead>
+                {% for result in results %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ result.subject.name }}</td>
+                    <td>{{ result.subject.code }}</td>
+                    <td> {{ result.marks }}</td>
+                    <td>{{ result.grade }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <p>No results yet.</p>
+                </tr>
+                {% endfor %}
+            </table>
+            
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

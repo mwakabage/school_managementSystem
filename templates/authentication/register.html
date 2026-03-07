@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account | School System</title>
+    <link rel="stylesheet" href="{% static 'authentication/register.css' %}">
+</head>
+<body>
+
+<div class="register-wrapper">
+    <div class="register-card">
+
+        <div class="register-header">
+            <h2>Create Account</h2>
+            <p>Join the School Management System</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>FirstName</label>
+                <input type="text" name="first_name" required>
+            </div>
+           <div class="form-group">
+                <label>MiddleName</label>
+                <input type="text" name="middle_name" required>
+            </div>
+             <div class="form-group">
+                <label>LastName</label>
+                <input type="text" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>year</label>
+                <input type="number" name="year" >
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" required>
+            </div>
+            <div class="form-group">
+                <label>Identification Number</label>
+                <input type="text" name="national_number" required>
+            </div>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="date_of_birth">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+        </form>
+
+        <div class="register-footer">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+{% if form.errors %}
+    <div style="color:red;">
+        {{ form.errors }}
+    </div>
+{% endif %}
+
+    </div>
+</div>
+
+<script>
+    // Simple password match validation
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm_password");
+
+    confirmPassword.addEventListener("input", function(){
+        if(password.value !== confirmPassword.value){
+            confirmPassword.style.borderColor = "red";
+        } else {
+            confirmPassword.style.borderColor = "#28a745";
+        }
+    });
+</script>
+
+</body>
+</html>

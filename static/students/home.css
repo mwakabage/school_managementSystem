@@ -1,0 +1,42 @@
+.student-card{
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 30px auto;
+    justify-content: space-between;
+    
+}
+.info-row p{
+    font-size: 16px;
+    margin-left: 5px;
+    font-style: italic;
+    
+}
+.student-card strong{
+    color: rgb(54, 54, 253);
+    margin-right: 20px;
+}
+.student-card h3{
+    font-family: italic;
+    color: rgb(41, 41, 241);
+}
+.info-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+h4{
+    text-align: center;
+    justify-content: center;
+    font-style: italic;
+    color: rgb(69, 69, 241);
+}
+.label{
+    font-style: italic;
+}

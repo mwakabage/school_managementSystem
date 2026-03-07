@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-4">
+    <div class="card p-3 mb-3">
+        <h5>Subjects</h5>
+        <p>{{ subjects|length }} subjects assigned</p>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card p-3 mb-3">
+        <h5>Assignments</h5>
+        <p>{{ assignments.title}} no Assignment assigned</p>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card p-3 mb-3">
+        <h5>Results</h5>
+        <p>{{ results|length }} results available</p>
+    </div>
+</div>
+
+
+{% endblock %}

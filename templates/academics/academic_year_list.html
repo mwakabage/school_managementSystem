@@ -1,0 +1,22 @@
+
+
+{%{% extends "base.html" %}%}
+
+<h2>Academic Years</h2>
+
+<a href="{% url 'academic_year_add' %}">Add New Year</a>
+
+<table border="1">
+    <tr>
+        <th>Year</th>
+        <th>Status</th>
+    </tr>
+
+    {% for y in years %}
+    <tr>
+        <td>{{ y.year }}</td>
+        <td>{{ y.active }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

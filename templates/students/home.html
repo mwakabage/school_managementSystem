@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="full-info">
+    <div class="student-card">
+        <h3>STUDENT DETAILS</h3>
+                 <h4>Personal Information</h4>
+
+        <div class="info-row">
+            <span class="label">FistName:</span>
+               <p> <strong>{{student.user.first_name}}</strong></p>
+        </div>
+      <div class="info-row">
+      <span class="label">MiddleName:</span>
+        <p><strong>{{student.user.middle_name}}</strong></p>
+      </div>
+      <div class="info-row">
+        <span class="label">LastName:</span>
+         <p><strong>{{student.user.last_name}}</strong></p>
+      </div>
+     
+      <div class="info-row">
+        <span class="label">Email:</span>
+        <p><strong>{{student.user.email}}</strong></p>
+      </div>
+     
+      <div class="info-row">
+        <span class="label">Year of studying:</span>
+        <p><strong>{{student.user.year_of_study}}</strong></p>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Year:</span>
+        <p><strong>{{student.user.year}}</strong></p>
+      </div>
+      
+      <div class="info-row">
+        <span class="label">Class:</span>
+         <p><strong>{{student.class_room}}</strong></p>
+      </div>
+     
+      <div class="info-row">
+        <span class="label">RegistrationNumber:</span>
+        <p><strong>{{student.admission_number}}</strong></p>
+      </div>
+
+       <div class="info-row">
+        <span class="label">PhoneNumber:</span>
+        <p><strong>{{student.user.phone_number}}</strong></p>
+       </div>
+      
+      <div class="info-row">
+        <span class="label">National ID:</span>
+            <p><strong>{{student.user.national_number}}</strong></p>
+      </div>
+
+      <div class="info-row">
+        <span class="label">BirthDate:</span>
+        <p><strong>{{student.date_of_birth}}</strong></p>
+      </div>
+      
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h2>Class Rooms</h2>
+
+<a href="{% url 'add_classroom' %}">Add Class</a>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Stream</th>
+    </tr>
+
+    {% for c in classes %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.stream }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Add Result</h2>
+
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+
+        <label for="student">Student</label>
+        <select name="student" id="student" required>
+            {% for student in students %}
+                <option value="{{ student.id }}">{{ student.user.first_name }} {{ student.user.last_name }} - {{ student.classroom.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="subject">Subject</label>
+        <select name="subject" id="subject" required>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="classroom">Classroom</label>
+        <select name="classroom" id="classroom" required>
+            {% for classroom in classrooms %}
+                <option value="{{ classroom.id }}">{{ classroom.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="marks">Marks</label>
+        <input type="number" name="marks" id="marks" placeholder="Enter marks" required>
+
+        <label for="term">Term</label>
+        <input type="text" name="term" id="term" placeholder="e.g. Term 1" required>
+
+        <button type="submit" class="btn">Add Result</button>
+    </form>
+</div>
+{% endblock %}
