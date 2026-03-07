@@ -13,7 +13,13 @@ urlpatterns = [
 
     path('teacher-subject/', views.teacher_subject_list, name='teacher_subject_list'),
     path('teacher-subject/add/', views.add_teacher_subject, name='add_teacher_subject'),
-    path('assignments/', views.teacher_add_assignment, name='student_assignments'),
+    
+    path('assignments/', views.teacher_add_assignment, name='assignments'),
     path('results/', views.teacher_add_result, name='student_results'),
+    
+    path("assignment/edit/<int:pk>/", views.edit_assignment, name="edit_assignment"),
+    path("assignment/delete/<int:pk>/", views.delete_assignment, name="delete_assignment"),
 
+    path("result/edit/<int:pk>/", views.edit_result, name="edit_result"),
+    path("result/delete/<int:pk>/", views.delete_result, name="delete_result"),
 ]

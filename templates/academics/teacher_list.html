@@ -1,25 +1,38 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block content%}
-<h2>Teacher Subjects</h2>
+{% block content %}
+<div class="container">
 
-<a href="{% url 'add_teacher_subject' %}">Assign Subject</a>
+    <h2 class="section-title ">Teacher Subjects</h2>
 
-<table border="1">
-<tr>
-    <th>Teacher</th>
-    <th>Subject</th>
-    <th>Class</th>
-</tr>
+    
+    
+    <a href="{% url 'add_teacher_subject' %}" class="btn btn-primary mb-3">Assign Subject</a>
 
-{% for t in data %}
-<tr>
-    <td>{{ t.teacher.username }}</td>
-    <td>{{ t.subject.name }}</td>
-    <td>{{ t.classroom.name }} - {{ t.classroom.stream }}</td>
-</tr>
-{% endfor %}
+    <div class="table-responsive">
+        <table class="table ">
+            <thead >
+                <tr>
+                    <th>Teacher</th>
+                    <th>Subject</th>
+                    <th>Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in data %}
+                <tr>
+                    <td>{{ t.teacher.username }}</td>
+                    <td>{{ t.subject.name }}</td>
+                    <td>{{ t.classroom.name }} - {{ t.classroom.stream }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">No subjects assigned</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-</table>
-
-{%endblock%}
+</div>
+{% endblock %}

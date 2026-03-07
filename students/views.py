@@ -49,6 +49,7 @@ def student_assignments(request):
       )
   
     context = {
+        'student':student,
         'assignments': assignments
     }
 

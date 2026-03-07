@@ -79,10 +79,14 @@ def dashboard(request):
        teacher = request.user
 
        assignments = TeacherSubject.objects.filter(teacher=teacher)
+       assignments = Assignment.objects.filter(teacher=teacher)
+
+       results = Result.objects.filter(teacher=teacher)
 
        context = {
         "teacher": teacher,
-        "assignments": assignments
+        "assignments": assignments,
+        "results":results
          }
        return render(request,'academics/teacher_dashboard.html', context)
 

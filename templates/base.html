@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="{% static 'students/home.css' %}">
     <link rel="stylesheet" href="{% static 'academics/assignment.css' %}">
     <link rel="stylesheet" href="{% static 'academics/result.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/subject.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/teacher.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/assign_teacher.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/assign_subject.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/add_classroom.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/classroom.css' %}">
+
 
 </head>
 
@@ -44,7 +51,7 @@
             <a href="{% url 'classroom_list' %}" class="nav-link">ClassRoom</a>
             <a href="{% url 'subject_list' %}" class="nav-link">Subjects</a>
             <a href="{% url 'teacher_subject_list' %}" class="nav-link">Teacher</a>
-            <a href="{% url 'student_assignments' %}" class="nav-link">Assignments</a>
+            <a href="{% url 'assignments' %}" class="nav-link">Assignments</a>
             <a href="{% url 'student_results' %}" class="nav-link">Results</a>
 
         {% endif %}

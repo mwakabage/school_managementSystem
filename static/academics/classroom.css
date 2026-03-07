@@ -1,0 +1,71 @@
+
+.classrooms-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f4f6f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.classrooms-title {
+    font-size: 28px;
+    color: #34495e;
+    border-bottom: 3px solid #2980b9;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+
+.classrooms-btn {
+    display: inline-block;
+    background-color: #2980b9;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+}
+.classrooms-btn:hover {
+    background-color: #1c5980;
+}
+
+
+.classrooms-table-wrapper {
+    overflow-x: auto;
+}
+
+
+.classrooms-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.classrooms-table thead th {
+    background-color: #2980b9;
+    color: white;
+    text-align: left;
+    padding: 12px;
+    border-radius: 6px 6px 0 0;
+}
+
+.classrooms-table tbody tr {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+}
+
+.classrooms-table tbody tr:hover {
+    background-color: #d6eaf8;
+}
+
+.classrooms-table td {
+    padding: 12px;
+}
+.text-center {
+    text-align: center;
+    color: #7f8c8d;
+}

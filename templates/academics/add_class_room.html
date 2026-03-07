@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Add Classroom</h2>
+<div class="container mt-4">
 
-<form method="POST">
-    {% csrf_token %}
+    <!-- Heading -->
+    <h2 class="section-title mb-3">Add Classroom</h2>
 
-    <label>Name:</label>
-    <input name="name">
+    <!-- Form -->
+    <form method="POST" class="form-card p-4 shadow-sm rounded bg-light">
+        {% csrf_token %}
 
-    <label>Stream:</label>
-    <input name="stream">
+        <div class="mb-3">
+            <label class="form-label">Name:</label>
+            <input type="text" name="name" class="form-input">
+        </div>
 
-    <button>Save</button>
-</form>
+        <div class="mb-3">
+            <label class="form-label">Stream:</label>
+            <input type="text" name="stream" class="form-input">
+        </div>
 
-{%endblock%}
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+
+</div>
+{% endblock %}

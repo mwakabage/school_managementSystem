@@ -1,0 +1,49 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Heading style */
+.section-title {
+    color: #2c3e50;
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 5px;
+}
+
+/* Button style */
+.btn-primary {
+    background-color: #1abc9c;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    transition: background-color 0.2s;
+}
+.btn-primary:hover {
+    background-color: #16a085;
+    text-decoration: none;
+    color: white;
+}
+
+/* Table styling */
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px; /* separate rows */
+}
+
+table thead th {
+    border-radius: 8px;
+}
+
+table tbody tr {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+}
+
+table tbody tr:hover {
+    background-color: #d1f2eb;
+}
+
+/* Make table cells rounded and spaced */
+table td, table th {
+    padding: 12px 15px;
+}

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<div class="row">
+
 <div class="col-md-4">
     <div class="card p-3 mb-3">
         <h5>Subjects</h5>
@@ -12,7 +14,7 @@
 <div class="col-md-4">
     <div class="card p-3 mb-3">
         <h5>Assignments</h5>
-        <p>{{ assignments.title}} no Assignment assigned</p>
+        <p>{{ assignments|length }} assignments available</p>
     </div>
 </div>
 
@@ -23,5 +25,74 @@
     </div>
 </div>
 
+</div>
 
+<hr>
+
+<h3>Student Assignments</h3>
+
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Class</th>
+<th>Due Date</th>
+<th>Actions</th>
+</tr>
+
+{% for assignment in assignments %}
+<tr>
+<td>{{ assignment.title }}</td>
+<td>{{ assignment.class_room }}</td>
+<td>{{ assignment.due_date }}</td>
+
+<td class="bt">
+<span><a href="{% url 'edit_assignment' assignment.id %}" class="btn btn-warning btn-sm">Edit</a>
+<a href="{% url 'delete_assignment' assignment.id %}" class="btn btn-danger btn-sm">Delete</a>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+  <hr>
+
+       <h3>Student Results</h3>
+
+     <table class="table">
+
+       <tr>
+          <th>Student</th>
+          <th>Subject</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+
+     {% for result in results %}
+
+       <tr>
+
+       <td>{{ result.student }}</td>
+       <td>{{ result.subject }}</td>
+       <td>{{ result.marks }}</td>
+
+       <td class="bt">
+        <a href="{% url 'edit_result' result.id %}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{% url 'delete_result' result.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+
+     </tr>
+
+{% endfor %}
+
+</table>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+td .bt a {
+    min-width: 60px;
+    text-align: center;
+}
+</style>
 {% endblock %}

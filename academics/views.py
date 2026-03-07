@@ -127,6 +127,7 @@ def student_results(request):
     return render(request, 'students/results.html', context)
 
 def teacher_add_assignment(request):
+  
     if request.method == "POST":
         title = request.POST.get("title")
         description = request.POST.get("description")
@@ -134,9 +135,7 @@ def teacher_add_assignment(request):
         class_room_id = request.POST.get("classroom")
         due_date = request.POST.get("due_date")
         
-        subject = Subject.objects.get(id=subject_id)
-        classroom = ClassRoom.objects.get(id=class_room_id)
-
+      
         Assignment.objects.create(
             title=title,
             description=description,
@@ -145,13 +144,15 @@ def teacher_add_assignment(request):
             due_date=due_date,
             teacher=request.user
         )
-        return redirect("teacher_dashboard")
-
+        return redirect("dashboard")
     subjects = Subject.objects.all()
     classrooms = ClassRoom.objects.all()
-    return render(request, "academics/assignment.html", {
+    
+    
+    return render(request, "academics/add_assignment.html", {
         "subjects": subjects,
         "classrooms": classrooms
+        
     })
 
 def teacher_add_result(request):
@@ -184,7 +185,7 @@ def teacher_add_result(request):
             class_room_id=class_room_id,
             teacher=request.user
         )
-        return redirect("teacher_dashboard")
+        return redirect("dashboard")
 
     students = Student.objects.all()
     subjects = Subject.objects.all()
@@ -194,3 +195,41 @@ def teacher_add_result(request):
         "subjects": subjects,
         "classrooms": classrooms
     })
+    
+def edit_assignment(request, pk):
+    
+      assignment = get_object_or_404(Assignment, pk=pk, teacher=request.user)
+
+      if request.method == "POST":
+        assignment.title = request.POST.get("title")
+        assignment.description = request.POST.get("description")
+        assignment.due_date = request.POST.get("due_date")
+        assignment.save()
+
+        return redirect("dashboard")
+
+      return render(request, "academics/edit_assignment.html", {"assignment": assignment})
+  
+def delete_assignment(request, pk):
+    
+    assignment = get_object_or_404(Assignment, pk=pk, teacher=request.user)
+    assignment.delete()
+
+    return redirect("dashboard")
+def edit_result(request, pk):
+    
+    result = get_object_or_404(Result, pk=pk, teacher=request.user)
+
+    if request.method == "POST":
+        result.marks = request.POST.get("marks")
+        result.save()
+
+        return redirect("dashboard")
+
+    return render(request, "academics/edit_result.html", {"result": result})
+def delete_result(request, pk):
+    
+    result = get_object_or_404(Result, pk=pk, teacher=request.user)
+    result.delete()
+
+    return redirect("dashboard")

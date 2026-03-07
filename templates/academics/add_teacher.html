@@ -1,42 +1,44 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block content%}
-<h2>Assign Teacher Subject</h2>
+{% block content %}
+<div class="container mt-4">
 
-<form method="POST">
-{% csrf_token %}
+    <!-- Heading -->
+    <h2 class="section-title mb-3">Assign Teacher Subject</h2>
 
-<label>Teacher</label>
-<select name="teacher">
-    {% for t in teachers %}
-        <option value="{{ t.id }}">
-            {{ t.username }}
-        </option>
-    {% endfor %}
-</select>
+    <!-- Form -->
+    <form method="POST" class="form-card p-4 shadow-sm rounded bg-light">
+        {% csrf_token %}
 
+        <div class="mb-3">
+            <label class="form-label">Teacher</label>
+            <select name="teacher" class="form-select">
+                {% for t in teachers %}
+                <option value="{{ t.id }}">{{ t.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-<label>Subject</label>
-<select name="subject">
-    {% for s in subjects %}
-        <option value="{{ s.id }}">
-            {{ s.name }}
-        </option>
-    {% endfor %}
-</select>
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <select name="subject" class="form-select">
+                {% for s in subjects %}
+                <option value="{{ s.id }}">{{ s.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label">Class</label>
+            <select name="classroom" class="form-select">
+                {% for c in classes %}
+                <option value="{{ c.id }}">{{ c.name }} - {{ c.stream }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-<label>Class</label>
-<select name="classroom">
-    {% for c in classes %}
-        <option value="{{ c.id }}">
-            {{ c.name }} - {{ c.stream }}
-        </option>
-    {% endfor %}
-</select>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
 
-<button>Save</button>
-
-</form>
-
-{%endblock%}
+</div>
+{% endblock %}

@@ -1,22 +1,37 @@
 {% extends 'base.html' %}
 
-{% block content%}
-<h2>Class Rooms</h2>
+{% block content %}
+<div class="classrooms-container">
 
-<a href="{% url 'add_classroom' %}">Add Class</a>
+    <!-- Heading -->
+    <h2 class="classrooms-title">Class Rooms</h2>
 
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Stream</th>
-    </tr>
+    <!-- Add Class link -->
+    <a href="{% url 'add_classroom' %}" class="classrooms-btn">Add Class</a>
 
-    {% for c in classes %}
-    <tr>
-        <td>{{ c.name }}</td>
-        <td>{{ c.stream }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    <!-- Classrooms Table -->
+    <div class="classrooms-table-wrapper">
+        <table class="classrooms-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Stream</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in classes %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.stream }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="text-center">No classes available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+</div>
 {% endblock %}

@@ -1,0 +1,52 @@
+
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.section-title {
+    color: #2c3e50;
+    border-bottom: 2px solid #e67e22;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Card-like form */
+.form-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+.form-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Form elements */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+/* Button style */
+.btn-success {
+    background-color: #27ae60;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: background-color 0.2s;
+}
+.btn-success:hover {
+    background-color: #219150;
+    color: white;
+    text-decoration: none;
+}

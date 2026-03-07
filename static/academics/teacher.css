@@ -1,0 +1,52 @@
+
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+
+.section-title {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    transition: background-color 0.2s;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+    color: white;
+    text-decoration: none;
+}
+
+/* Table styling */
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px; /* space between rows */
+}
+
+table thead th {
+    border-radius: 8px;
+}
+
+table tbody tr {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+}
+
+table tbody tr:hover {
+    background-color: #d6eaf8;
+}
+
+/* Table cells padding */
+table td, table th {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
