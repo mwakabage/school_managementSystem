@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <h2 class="section-title ">{{teacher.email}}</h2>
+
+    
+    <div class="table-responsive">
+        <table class="table ">
+            <thead >
+                <tr>
+                    <th>Subject</th>
+                    <th>Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ts in teacher_subject %}
+                <tr>
+                    <td>{{ ts.subject.name }}</td>
+                    <td>{{ ts.classroom.name }} - {{ t.classroom.stream }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">No subjects assigned</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

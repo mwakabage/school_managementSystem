@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'academics/assign_subject.css' %}">
     <link rel="stylesheet" href="{% static 'academics/add_classroom.css' %}">
     <link rel="stylesheet" href="{% static 'academics/classroom.css' %}">
+    <link rel="stylesheet" href="{% static 'academics/teacher_dashboard.css' %}">
 
 
 </head>
@@ -39,20 +40,35 @@
             <a href="{% url 'student_home' %}" class="nav-link">
                 Home
             </a>
-            <a href="{% url 'student_assignments' %}" class="nav-link">My Assignments</a>
-            <a href="#" class="nav-link">Examination</a>
+            <a href="{% url 'student_assignment' %}" class="nav-link">My Assignments</a>
+            <a href="{% url 'student_material'%}" class="nav-link">Materials</a>
             <a href="{% url 'student_result' %}" class="nav-link">Results</a>
 
         {% elif user.role == 'TEACHER' %}
             <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == '/teacher/dashboard/' %}active{% endif %}">
                 Dashboard
             </a>
+            {% if is_headmaster or is_academic %}
             <a href="{% url 'academic_year_list' %}" class="nav-link">Academic Management</a>
+             {% endif %}
+
+             {% if is_headmaster or is_academic %}
             <a href="{% url 'classroom_list' %}" class="nav-link">ClassRoom</a>
-            <a href="{% url 'subject_list' %}" class="nav-link">Subjects</a>
+            <a href="{% url 'subject_list' %}" class="nav-link">Subjects</a>     
+            {% endif %}
+
+            {% if is_headmaster or is_academic %}
             <a href="{% url 'teacher_subject_list' %}" class="nav-link">Teacher</a>
+             <a href="{% url 'assignments' %}" class="nav-link">Assignments</a>
+            <a href="{% url 'student_results' %}" class="nav-link">Results</a>
+            <a href="{% url 'teacher_notes' %}" class="nav-link">Notes</a>
+
+            {% endif %}
+
             <a href="{% url 'assignments' %}" class="nav-link">Assignments</a>
             <a href="{% url 'student_results' %}" class="nav-link">Results</a>
+            <a href="{% url 'teacher_notes' %}" class="nav-link">Notes</a>
+
 
         {% endif %}
         <a href="{% url 'logout' %}" class="nav-link logout">Logout</a>
@@ -66,6 +82,7 @@
 
             <button id="toggleSidebar" class="menu-btn">☰</button>
               <h2 style="color:blue">  WELCOME,&nbsp{{student.user.last_name}}</h2>
+              \
             <div class="top-actions">
                 <button id="darkModeToggle" class="dark-btn">🌙</button>
                 <span class="user-name">{{ user.username }}</span>

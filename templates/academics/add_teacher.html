@@ -14,28 +14,23 @@
             <label class="form-label">Teacher</label>
             <select name="teacher" class="form-select">
                 {% for t in teachers %}
-                <option value="{{ t.id }}">{{ t.username }}</option>
+                <option value="{{ t.id }}">{{ t.email }}</option>
                 {% endfor %}
             </select>
-        </div>
-
-        <div class="mb-3">
+        </di>
+        <br><br>
+        
             <label class="form-label">Subject</label>
-            <select name="subject" class="form-select">
                 {% for s in subjects %}
-                <option value="{{ s.id }}">{{ s.name }}</option>
+                <input type="checkbox" name="subject" value="{{ s.id }}" >{{ s.name }}
                 {% endfor %}
-            </select>
-        </div>
+           <br>
 
-        <div class="mb-3">
             <label class="form-label">Class</label>
-            <select name="classroom" class="form-select">
                 {% for c in classes %}
-                <option value="{{ c.id }}">{{ c.name }} - {{ c.stream }}</option>
+                <input type="checkbox" name="classroom" value="{{ c.id }}">{{ c.name }} - {{ c.stream }}
                 {% endfor %}
-            </select>
-        </div>
+           <br>        
 
         <button type="submit" class="btn btn-success">Save</button>
     </form>

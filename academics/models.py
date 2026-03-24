@@ -21,9 +21,10 @@ class TeacherSubject(models.Model):
         'authentication.User',
         on_delete=models.CASCADE
     )
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="teacher_assignments")
-    classroom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)
-
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="teacher_assignments", null=True, blank=True)
+    classroom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE,null=True, blank=True)
+    def __str__(self):
+        return f"{self.teacher} - {self.subject} - {self.classroom}"
 class Assignment(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
@@ -48,3 +49,16 @@ class Result(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.subject} - {self.marks}"
+class Notes(models.Model):
+    teacher = models.ForeignKey("authentication.User", on_delete=models.CASCADE, null=True, blank=True)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    class_room = models.ForeignKey(ClassRoom, on_delete=models.CASCADE,null=True)
+    title = models.CharField(max_length=255)
+     
+    file = models.FileField(upload_to="notes/files/", blank=True, null=True)
+     
+    video = models.FileField(upload_to="noets/video/", blank=True, null=True)
+    
+    created_at = models.DateTimeField(auto_created=True)
+    def __str__(self):
+        return self.title

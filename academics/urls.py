@@ -19,7 +19,11 @@ urlpatterns = [
     
     path("assignment/edit/<int:pk>/", views.edit_assignment, name="edit_assignment"),
     path("assignment/delete/<int:pk>/", views.delete_assignment, name="delete_assignment"),
+    path("teacher/details/<int:teacher_id>/", views.teacher_detail, name="teacher_detail"),
 
     path("result/edit/<int:pk>/", views.edit_result, name="edit_result"),
     path("result/delete/<int:pk>/", views.delete_result, name="delete_result"),
+    
+    path("upload-notes",views.upload_notes, name="upload_notes"),
+    path("teacher-note/", views.teacher_notes, name="teacher_notes")
 ]

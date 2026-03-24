@@ -14,55 +14,84 @@ body{
     color: var(--text);
 }
 
+/* Layout ya dashboard */
 .dashboard{
     display: flex;
     min-height: 100vh;
+    background: #f6f8fa;
 }
 
+
+/* Sidebar style kama card */
 .sidebar{
-    width: 240px;
-    background: var(--primary);
-    color: white;
+    width: 250px;
+    background: rgb(69, 53, 139);
+    margin: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     padding: 20px;
-    transition: 0.3s;
+    border-right: 3px solid #4a90e2;
 }
 
-.sidebar.collapsed{
-    width: 70px;
-}
 
-.logo{
+
+.sidebar-logo{
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 30px;
-    font-size: 18px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
 }
 
-.sidebar .nav-link{
+
+.nav-link{
     display: block;
-    text-decoration: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 6px;
+    padding: 12px 15px;
     margin-bottom: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: hsl(0, 33%, 98%);
+    font-weight: 500;
     transition: 0.3s;
+    gap: 7px;
 }
 
-.sidebar .nav-link:hover{
-    background: var(--secondary);
+
+.nav-link:hover{
+    background: #4a90e2;
+    color: white;
+    transform: translateX(5px);
 }
 
-.sidebar .active{
-    background: #ffd166;
-    color: black;
-    font-weight: 600;
+
+.nav-link.active{
+    background: #4a90e2;
+    color: white;
 }
 
-.sidebar .logout{
+
+.logout{
     margin-top: 30px;
-    background: #c1121f;
+    background: #ff4d4d;
+    color: white;
     text-align: center;
 }
 
+.logout:hover{
+    background: #cc0000;
+}
+
+
+.main{
+    flex: 1;
+    margin: 15px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
 .main{
     flex: 1;
     display: flex;
@@ -139,6 +168,7 @@ body{
 
     .sidebar-logo{
         display: none;
+        color: white;
     }
 
 }

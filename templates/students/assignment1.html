@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+            <h3>Assignments</h3>
+         <table class="table">
+                <thead>
+                    <tr>
+                   <th>Title</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Questions</th>
+                    <th>Date</th>
+                    <tr>
+                </thead>
+                <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                <td>{{ assignment.title }}</td>
+                <td>{{ assignment.subject.name }}</td>
+                <td>{{ assignment.subject.code }}</td>
+                <td>{{assignment.description|default:"no assigment"}}</td>
+                <td>{{ assignment.due_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <p>No assignments available.</p>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+            
+        
+{%  endblock %}

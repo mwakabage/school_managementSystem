@@ -1,0 +1,19 @@
+
+.bt{
+    display: flex;
+    gap: 5px;   
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#card{
+    background: blue;
+    color: white;
+}
+#card1{
+    background: rgb(13, 219, 99);
+    color: white;
+}
+#card2{
+    background: rgb(190, 15, 161);
+    color: white;
+}

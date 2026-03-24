@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from academics.models import AcademicYear,TeacherSubject,Subject,ClassRoom,Result,Assignment
+from academics.models import AcademicYear,TeacherSubject,Subject,ClassRoom,Result,Assignment,Notes
 from students.models import Student
+from .forms import NotesForm
 from django.contrib.auth import get_user_model
  
 User = get_user_model()
@@ -67,22 +68,30 @@ def teacher_subject_list(request):
 
 
 def add_teacher_subject(request):
-    teachers = User.objects.all()
+    teachers = User.objects.filter(role="TEACHER")
     subjects = Subject.objects.all()
     classes = ClassRoom.objects.all()
 
     if request.method == 'POST':
-        teacher_id = request.POST['teacher']
-        subject_id = request.POST['subject']
-        class_id = request.POST['classroom']
-
-        TeacherSubject.objects.create(
-            teacher_id=teacher_id,
-            subject_id=subject_id,
-            classroom_id=class_id
+        teacher_id = request.POST.get("teacher")
+        subject_id = request.POST.getlist('subject')
+        classroom_id = request.POST.getlist('classroom')
+        
+        if not teacher_id:
+            return redirect("add_teacher_subject")
+        
+        teacher=get_object_or_404(User, id=teacher_id)
+        for subject in subject_id:
+            for classroom in classroom_id:
+                if subject.isdigit() and classroom.isdigit():
+                    
+                   TeacherSubject.objects.get_or_create(
+                       subject_id=int(subject),
+                        classroom_id=int(classroom),
+                        teacher=teacher
         )
 
-        return redirect('teacher_list')
+        return redirect('teacher_subject_list')
 
     context = {
         'teachers': teachers,
@@ -154,7 +163,16 @@ def teacher_add_assignment(request):
         "classrooms": classrooms
         
     })
-
+def teacher_detail(request, teacher_id):
+    teacher = User.objects.get(id=teacher_id)
+    teacher_subject = TeacherSubject.objects.filter(
+        teacher=teacher
+    )
+    context={
+        "teacher":teacher,
+        "teacher_subject":teacher_subject
+    }
+    return render(request, "academics/teacher_detail.html", context)
 def teacher_add_result(request):
     if request.method == "POST":
         student_id = request.POST.get("student")
@@ -186,14 +204,24 @@ def teacher_add_result(request):
             teacher=request.user
         )
         return redirect("dashboard")
-
-    students = Student.objects.all()
-    subjects = Subject.objects.all()
-    classrooms = ClassRoom.objects.all()
+    teacher_subject=TeacherSubject.objects.filter(
+        teacher= request.user
+    )
+   
+    subjects = Subject.objects.filter(
+        id__in=teacher_subject.values_list("subject", flat=True)
+    )
+    classrooms = ClassRoom.objects.filter(
+        id__in=teacher_subject.values_list("classroom", flat=True)
+    )
+    students = Student.objects.filter(
+        class_room__in=classrooms
+    )
     return render(request, "academics/add_result.html", {
         "students": students,
         "subjects": subjects,
-        "classrooms": classrooms
+        "classrooms": classrooms,
+        "teacher_subject":teacher_subject
     })
     
 def edit_assignment(request, pk):
@@ -233,3 +261,35 @@ def delete_result(request, pk):
     result.delete()
 
     return redirect("dashboard")
+
+def upload_notes(request):
+    teacher = request.user
+    teacher_subjects = TeacherSubject.objects.filter(teacher=teacher)
+    
+    if request.method == "POST":
+        form=NotesForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            notes = form.save(commit=False)
+            notes.teacher = teacher
+            notes.save()
+            return redirect("teacher_notes")
+    else:
+        form=NotesForm()
+        
+    form.fields['subject'].queryset=Subject.objects.filter(
+        id__in=teacher_subjects.values_list('subject', flat=True)
+    )
+       
+    form.fields['class_room'].queryset=ClassRoom.objects.filter(
+        id__in=teacher_subjects.values_list('classroom', flat=True)
+    )
+      
+    return render(request, "academics/upload_materials.html", {"form":form})   
+    
+def teacher_notes(request):
+    teacher= request.user
+    
+    notes = Notes.objects.filter(teacher=teacher)
+    
+    return render(request, "academics/teacher_notes.html",{"notes":notes})

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Materials</h2>
+<form methosd="GET">
+    <input type="text" name="q" placeholder="search subject" value="{{query}}">
+    <button type="submit">Search</button>
+</form>
+
+{% for note in notes %}
+
+<div class="card">
+
+    <h4>{{note.title}}</h4>
+    <p>{{note.subject.name}}</p>
+
+    {% if note.file %}
+     <a href="{{note.file.url}}" target="_blank">open</a>
+     <a href="{{note.file.url}}" download>Download</a>
+     <iframe src="{{ note.file.url }}" width="100%"></iframe>
+     {% if note.video %}
+      <video width="300" controls><source src="{{ note.video.url}}"></video>
+     {% endif %}
+</div>
+ {% empty %}
+ <p> No materials found</p>
+{% endfor %}
+ {% endblock %}

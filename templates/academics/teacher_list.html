@@ -21,7 +21,10 @@
             <tbody>
                 {% for t in data %}
                 <tr>
-                    <td>{{ t.teacher.username }}</td>
+                    <td>
+                    <a href=" {% url 'teacher_detail' t.teacher.id %}">
+                    {{ t.teacher }}
+                    </a></td>
                     <td>{{ t.subject.name }}</td>
                     <td>{{ t.classroom.name }} - {{ t.classroom.stream }}</td>
                 </tr>

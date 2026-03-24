@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+  <h2>upload</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+
+    {%  csrf_token %}
+
+    {{form.title}}
+    {{form.subject}}
+    {{form.class_room}}
+ <p>File (PDF/Word)</p>
+     {{form.file}}
+<p>Video</p>
+    {{form.video}}
+
+    <button type="'submit" class="btn btn-primary">Upload Material</button>
+{% endblock %}

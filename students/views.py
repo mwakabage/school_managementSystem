@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Student
-from academics.models import  Subject,Assignment,Result
+from academics.models import  Subject,Assignment,Result,Notes
 from students.models import User
 
 
@@ -36,12 +36,8 @@ def student_home(request):
       'user':request.user
     })
     
-def student_assignments(request):
+def student_assignment(request):
         
-    if request.user.role != 'student':
-        
-     return redirect('dashboard')
-
     student = get_object_or_404(Student, user=request.user)
 
     assignments=Assignment.objects.filter(
@@ -53,7 +49,7 @@ def student_assignments(request):
         'assignments': assignments
     }
 
-    return render(request, 'students/student_dashboard.html', context)
+    return render(request, 'students/assignment1.html', context)
 def assignment_detail(request, pk):
     
     if request.user.role != 'student':
@@ -69,4 +65,17 @@ def assignment_detail(request, pk):
 
     return render(request, 'students/assignment_detail.html', {
         'assignment': assignment
+    })
+    
+def student_materials(request):
+    student = request.user
+    classroom = student.classroom
+    
+    query = request.GET.get("q")
+    notes=Notes.objects.filter(subject__name__icontains=query)
+    
+    return render(request, "student_materials.html",{
+        "notes":notes,
+        "query":query,
+        "classroom":classroom
     })

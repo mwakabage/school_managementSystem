@@ -55,6 +55,7 @@ def register_form(request):
                                                         "year":form["year"],
                                                         "phone_number":form["phone_number"],
                                                         "national_number":form["national_number"],
+                                                        "birth_of_date":form["Date of Birth"],
                                                         "password":form["password"],
                                                                       #"form":form        
                                                                           })
@@ -77,16 +78,50 @@ def dashboard(request):
 
     elif request.user.role == 'TEACHER': 
        teacher = request.user
+       if teacher.groups.filter(name="Headmaster").exists():
+    
+        assignments = Assignment.objects.all()
+        results = Result.objects.all()
+        teacher_subjects = User.objects.filter(role="TEACHER")
+        is_headmaster = True
+        is_academic = False
+        is_normal = False
 
-       assignments = TeacherSubject.objects.filter(teacher=teacher)
-       assignments = Assignment.objects.filter(teacher=teacher)
+       elif teacher.groups.filter(name="Academic Teacher").exists():
+        assignments = Assignment.objects.all()
+        results = Result.objects.all()
+        teacher_subjects = TeacherSubject.objects.all()
+        is_headmaster = False
+        is_academic = True
+        is_normal = False
+        
+       elif teacher.groups.filter(name="Normal Teacher").exists():
+           
+        teacher_subjects = TeacherSubject.objects.filter(teacher=teacher)
+        assignments = Assignment.objects.filter(teacher=teacher)
 
-       results = Result.objects.filter(teacher=teacher)
+        results = Result.objects.filter(teacher=teacher)
+        is_headmaster = False
+        is_academic = False
+        is_normal = True
 
+    
+       else:
+            assignments = []
+            results = []
+            teacher_subjects = []
+            is_headmaster = False
+            is_academic = False
+            is_normal = False
+         
        context = {
         "teacher": teacher,
         "assignments": assignments,
-        "results":results
+        "results":results,
+        "teacher_subjects": teacher_subjects,
+        "is_headmaster": is_headmaster,
+        "is_academic": is_academic,
+        "is_normal": is_normal
          }
        return render(request,'academics/teacher_dashboard.html', context)
 
