@@ -18,6 +18,7 @@
      <a href="{{note.file.url}}" target="_blank">open</a>
      <a href="{{note.file.url}}" download>Download</a>
      <iframe src="{{ note.file.url }}" width="100%"></iframe>
+     {%endif%}
      {% if note.video %}
       <video width="300" controls><source src="{{ note.video.url}}"></video>
      {% endif %}
@@ -25,4 +26,4 @@
  {% empty %}
  <p> No materials found</p>
 {% endfor %}
- {% endblock %}
+{% endblock %}

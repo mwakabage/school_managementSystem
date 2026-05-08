@@ -1,8 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
-from .models import User 
+from .models import User,Profile
 from academics.models import Assignment,Result,TeacherSubject
 from students.models import Student
 from django.contrib.auth.hashers import make_password
@@ -134,7 +134,21 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-
+def profile_modal(request):
+    profile = get_object_or_404(Profile, user=request.user)
+     
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")
+        
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, "profile_modal.html",{
+        'profile':profile,
+        'form':form
+    })
 
 def edit_profile(request):
     

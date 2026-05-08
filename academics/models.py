@@ -59,6 +59,6 @@ class Notes(models.Model):
      
     video = models.FileField(upload_to="noets/video/", blank=True, null=True)
     
-    created_at = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title

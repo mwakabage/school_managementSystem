@@ -71,11 +71,12 @@ def student_materials(request):
     student = request.user
     classroom = student.classroom
     
-    query = request.GET.get("q")
-    notes=Notes.objects.filter(subject__name__icontains=query)
+   
+    notes = Notes.objects.filter(
+        class_room=student.classroom
+    )
     
-    return render(request, "student_materials.html",{
+    return render(request, "students/student_materials.html",{
         "notes":notes,
-        "query":query,
         "classroom":classroom
     })

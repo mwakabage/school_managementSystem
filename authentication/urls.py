@@ -8,5 +8,5 @@ urlpatterns = [
     path('logout/',views.logout_view,name='logout'),
     path('dashboard/',views.dashboard,name='dashboard'),
     path('profile/', views.edit_profile, name="edit_profile"),
-
+    path('profile-modal',views.profile_modal, name='profile_modal'),
 ]

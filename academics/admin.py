@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AcademicYear, ClassRoom, Subject, TeacherSubject, Assignment, Result
+from .models import AcademicYear, ClassRoom, Subject,Notes, TeacherSubject, Assignment, Result
 
 
 # Academic Year
@@ -39,10 +39,15 @@ class ResultAdmin(admin.ModelAdmin):
     search_fields = ('student', 'subject', 'term')
     list_filter = ('term', 'subject')
     ordering = ('-created_at',)
-
+    
+class NotesAdmin(admin.ModelAdmin):
+    list_display = ('title', 'teacher','subject','class_room', 'created_at')
+    search_fields = ('email', 'subject')
 admin.site.register(AcademicYear, AcademicYearAdmin)
 admin.site.register(ClassRoom, ClassRoomAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Assignment, AssignmentAdmin)
 admin.site.register(Result, ResultAdmin)
+admin.site.register(Notes, NotesAdmin)
+
 admin.site.register(TeacherSubject, TeacherSubjectAdmin)

@@ -1,0 +1,41 @@
+{%%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School System</title>
+<head>
+<body>
+<img src="{{user.profile.profile_image.url}}" alt="profile" 
+class="rounded-circle" style="width:50px" cursor="pointer" data-bs-toggle="modal" data-bs-target="#profileModal">
+
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-label="profileModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+           <div class="modal-header">
+            <h5 class="modal-title" id="profileModalLabel">
+              {{user.email}}'s Profile
+            </h5> 
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria="close"></button>
+               
+           </div>
+           <div class="modal-body text-center">
+            <img src="{{profile.profile_image.url}}" 
+            alt="Profile Image" class="circle-rounded mb-3" style="width:120px">
+            <p><strong>Username:</strong>{{user.last_name}}</p>
+            <p><strong>Email:</strong>{{user.email}}</p>
+            <p><strong>Phone:</strong>{{user.phone_number}}</p>
+            <p><strong>Bio:</strong>{{profile.bio|default:"No bio yet"}}</p>
+
+            <form method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                 {{ form.as_p }}
+                 <button type="submit" class="btn btn-primary mt-2">save changes<button>
+            </form>
+           </div>
+        </div>
+
+     </div>
+
+  </div>
+</body>
+</html>

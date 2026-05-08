@@ -46,7 +46,20 @@ INSTALLED_APPS = [
     'students',
     'examinations',
 ]
+INSTALLED_APPS += [
+    'cloudinary',
+    'cloudinary_storage',
+]
 
+# Configure Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dywk4ba7p',
+    'API_KEY': '854992785694577',
+    'API_SECRET': 'Jy5MWWmyYopK9arLIyyCjd09uA8'
+}
+
+# Tell Django to use Cloudinary for media
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
